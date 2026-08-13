@@ -20,3 +20,4 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python tools/evaluator/validate.py
+      - run: python -m unittest tools/evaluator/test_engine.py
