@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JENkt4k/constitution-for-intelligence/schemas/constitution.schema.json",
+  "title": "Constitution for Intelligence",
+  "type": "object",
+  "required": ["constitution"],
+  "additionalProperties": false,
+  "properties": {
+    "constitution": {
+      "type": "object",
+      "required": ["name", "version", "purpose", "epistemic_rule", "invariants", "decision_procedure", "escalation_rules", "amendment_protocol"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"},
+        "purpose": {"type": "string", "minLength": 1},
+        "epistemic_rule": {
+          "type": "object",
+          "required": ["principle", "requirements"],
+          "properties": {
+            "principle": {"type": "string", "minLength": 1},
+            "requirements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          },
+          "additionalProperties": false
+        },
+        "invariants": {
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^I[0-9]{2}_[a-z0-9_]+$": {
+              "type": "object",
+              "required": ["rule", "severity"],
+              "properties": {
+                "rule": {"type": "string", "minLength": 1},
+                "severity": {"enum": ["critical", "high", "objective"]}
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "decision_procedure": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "escalation_rules": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+        "amendment_protocol": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false
+    }
+  }
+}
