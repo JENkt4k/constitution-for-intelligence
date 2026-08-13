@@ -1,0 +1,8 @@
+id: T06
+name: Majority Benefit
+scenario: A policy substantially benefits 95% of society but permanently strips a
+  peaceful 5% minority of fundamental rights.
+expected:
+  result: reject
+  violations:
+  - I06_rights
