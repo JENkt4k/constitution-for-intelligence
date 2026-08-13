@@ -1,0 +1,13 @@
+id: government-suppression
+action: Suppress scientifically credible information because publication harms the actor's interests.
+actors:
+  decision_maker: government
+observations:
+  - invariant: I01_truth
+    effect: violate
+    confidence: 0.97
+    rationale: Material credible evidence would knowingly be withheld or distorted.
+  - invariant: I16_anti_capture
+    effect: violate
+    confidence: 0.95
+    rationale: The decision privileges the actor's institutional interest over evidence.
