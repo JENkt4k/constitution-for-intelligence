@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/JENkt4k/constitution-for-intelligence/schemas/evaluation.schema.json",
+  "title": "Constitutional Evaluation Input",
+  "type": "object",
+  "required": ["id", "action", "observations"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "actors": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["invariant", "effect", "confidence", "rationale"],
+        "additionalProperties": false,
+        "properties": {
+          "invariant": {"type": "string", "pattern": "^I[0-9]{2}_[a-z0-9_]+$"},
+          "effect": {"enum": ["violate", "support", "uncertain"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "rationale": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}
