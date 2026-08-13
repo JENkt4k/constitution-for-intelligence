@@ -43,6 +43,10 @@ def main() -> int:
         (path, root / "schemas/test.schema.json")
         for path in sorted((root / "tests/adversarial").glob("*.yaml"))
     )
+    targets.extend(
+        (path, root / "schemas/evaluation.schema.json")
+        for path in sorted((root / "examples/evaluated-decisions").glob("*.yaml"))
+    )
 
     failures = 0
     for instance, schema in targets:
